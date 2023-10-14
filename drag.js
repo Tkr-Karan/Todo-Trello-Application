@@ -53,33 +53,34 @@ droppables.forEach((zone) => {
       taskStatus: curTask.querySelector(".task-status").textContent.trim(),
     };
 
-    console.log("dropped", draggingCardData.taskID);
+    // console.log("dropped", draggingCardData.taskID);
 
-    let existData =
-      JSON.parse(localStorage.getItem(currDraggingCardData.taskStatus)) || [];
+    const drggingCategory = currDraggingCardData.taskStatus.trim();
+
+    let existData = JSON.parse(localStorage.getItem(drggingCategory)) || [];
     existData = [...existData, currDraggingCardData];
 
     let removeTaskId = draggingCardData.taskID;
-    if (!localStorage.getItem(currDraggingCardData.taskStatus)) {
-        localStorage.setItem(
-        currDraggingCardData.taskStatus,
-        JSON.stringify(existData)
-      );
+    if (!localStorage.getItem(drggingCategory)) {
+      localStorage.setItem(drggingCategory, JSON.stringify(existData));
     } else {
-      localStorage.setItem(
-        currDraggingCardData.taskStatus,
-        JSON.stringify(existData)
-      );
+      localStorage.setItem(drggingCategory, JSON.stringify(existData));
     }
 
-    // existData = existData.filter((val) => val.taskID !== removeTaskId);
+    console.log(draggingCardData.taskID);
 
-    // localStorage.setItem(
-    //   currDraggingCardData.taskStatus,
-    //   JSON.stringify(existData)
-    // );
+    let prevExistData = JSON.parse(
+      localStorage.getItem(draggingCardData.taskStatus.trim())
+    );
 
-    console.log("existData", existData);
+    console.log(prevExistData);
+
+    prevExistData = prevExistData.filter((val) => val.taskID !== removeTaskId);
+
+    localStorage.setItem(
+      draggingCardData.taskStatus.trim(),
+      JSON.stringify(prevExistData)
+    );
 
     if (newStatus == "pending")
       cardDetails.parentElement.style.backgroundColor = "lightGreen";

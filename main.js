@@ -63,7 +63,7 @@ function addTask() {
 // checking the data inside the local-storage
 function taskFromLocalStorage(isDeleted) {
   for (let i = 0; i < stageTypes.length; i++) {
-    const stageKey = stageTypes[i];
+    const stageKey = stageTypes[i].trim();
 
     if (localStorage.getItem(stageKey)) {
       const taskObj = JSON.parse(localStorage.getItem(stageKey));
@@ -85,7 +85,7 @@ formData.addEventListener("submit", function (e) {
     taskID: Date.now(),
     taskName: e.target[0].value,
     taskDescription: e.target[1].value,
-    taskStatus: taskCategory,
+    taskStatus: taskCategory.trim(),
   };
 
   //   console.log(taskCategory);
@@ -94,13 +94,13 @@ formData.addEventListener("submit", function (e) {
   e.target[1].value = "";
 
   let existingTasks;
-  existingTasks = JSON.parse(localStorage.getItem(taskCategory)) || [];
+  existingTasks = JSON.parse(localStorage.getItem(taskCategory.trim())) || [];
   existingTasks = [...existingTasks, formDetails];
 
-  if (!localStorage.getItem(taskCategory)) {
-    localStorage.setItem(taskCategory, JSON.stringify(existingTasks));
+  if (!localStorage.getItem(taskCategory.trim())) {
+    localStorage.setItem(taskCategory.trim(), JSON.stringify(existingTasks));
   } else {
-    localStorage.setItem(taskCategory, JSON.stringify(existingTasks));
+    localStorage.setItem(taskCategory.trim(), JSON.stringify(existingTasks));
   }
 
   //   console.log(formDetails);
@@ -115,13 +115,7 @@ formData.addEventListener("submit", function (e) {
 function createCard(taskData, stageKey) {
   let createTask = document.createElement("div");
   createTask.setAttribute("class", "card-data task");
-  // createTask.setAttribute("id", "_card-data");
   createTask.setAttribute("draggable", "true");
-  // createTask.setAttribute("ondragstart", "dragstart(event)");
-
-  //   console.log("create ", taskData.taskStatus);
-  
-//   <p class="taskid">${taskData.taskID} </p>
   createTask.innerHTML = `<div class="task-details">
     <h4>${taskData.taskName}</h4>
     <p > details: <span class="task-card-desc">${taskData.taskDescription}</span> </p>
@@ -133,7 +127,6 @@ function createCard(taskData, stageKey) {
   </div>`;
 
   // add the task card to its task state
-
   if (taskData.taskStatus === stageKey && !isDeleted)
     document.querySelector(`.category.${stageKey}`).append(createTask);
 
@@ -159,36 +152,22 @@ function createCard(taskData, stageKey) {
       // deleteTask(taskId);
       removeFromLocalStorage(taskData);
     }
-
-    // ta`skFromLocalStorage(isDeleted);
   });
 
   // editing the task
-
   let isEditable = true;
   let edit = createTask.querySelector(".edit-action");
   edit.addEventListener("click", (e) => {
     e.stopPropagation();
-    // alert("thanks for choosing, this is under maintainance");
 
     const taskDetails = createTask.querySelector(".task-details");
     let saveIcon = edit.querySelector(".fa-pencil");
     const cardDescription = taskDetails.querySelector(".task-card-desc");
-    
-
-    // let editedDescription = cardDescription.textContent;
-
-    // console.log(editedDescription);
 
     //updating local storage when we are editing
-
     function updateLocalStorage() {
-      //   console.log("called");
-
-      //   console.log("editedDescription", cardDescription.textContent);
-
       const existingTasks =
-        JSON.parse(localStorage.getItem(taskData.taskStatus)) || [];
+        JSON.parse(localStorage.getItem(taskData.taskStatus.trim())) || [];
 
       for (let i = 0; i < existingTasks.length; i++) {
         if (existingTasks[i].taskID === taskData.taskID) {
@@ -197,22 +176,19 @@ function createCard(taskData, stageKey) {
         }
       }
 
-      localStorage.setItem(taskData.taskStatus, JSON.stringify(existingTasks));
+      localStorage.setItem(
+        taskData.taskStatus.trim(),
+        JSON.stringify(existingTasks)
+      );
     }
 
     if (isEditable) {
       cardDescription.contentEditable = true;
       cardDescription.focus();
       cardDescription.style.cursor = "text";
-      cardDescription.style.outline = "none"
+      cardDescription.style.outline = "none";
 
       let editBtn = createTask.querySelector("#edit-btn");
-
-      //   saveIcon.classList.remove(".fa-pencil");
-      //   saveIcon.classList.add("fa-floppy-disk");
-
-      //   edit.classList.remove("edit-action");
-      //   edit.classList.add("save-action");
       editBtn.disabled = true;
       isEditable = false;
     }
@@ -220,24 +196,19 @@ function createCard(taskData, stageKey) {
     let debounceFxn = debounce(updateLocalStorage, 3000);
     cardDescription.addEventListener("keydown", debounceFxn);
 
-    function giveData() {
-      //   console.log(cardDescription.textContent);
-    }
-
     // debounce function updatin the data
     function debounce(updateLocalStorage, delay) {
       let timer;
 
       return function () {
-        // console.log("debunce called");
         clearTimeout(timer);
         timer = setTimeout(() => {
           updateLocalStorage();
           edit.disabled = false;
           isEditable = true;
           cardDescription.blur();
-          cardDescription.contentEditable = false
-          cardDescription.style.cursor = "pointer"
+          cardDescription.contentEditable = false;
+          cardDescription.style.cursor = "pointer";
         }, delay);
       };
     }
@@ -246,38 +217,19 @@ function createCard(taskData, stageKey) {
     name: taskData.taskName,
     description: taskData.taskDescription,
   };
-
-  //   let isCardOpen = true;
-  //   createTask.addEventListener("click", (e) => {
-  //     e.stopPropagation();
-
-  //     let cardOpen = document.querySelector(".open-card");
-  //     let taskHeading = document.querySelector(".task-heading");
-  //     let taskDescription = document.querySelector(".task-description");
-  //     if (isCardOpen) {
-  //       taskHeading.innerText = `${cardData.name}`;
-  //       taskDescription.innerText = `${cardData.description}`;
-  //       cardOpen.style.display = "flex";
-  //       cardOpen.classList.add("show-card-data", "card-transition");
-  //       isCardOpen = false;
-  //     } else {
-  //       cardOpen.style.display = "none";
-  //       isCardOpen = true;
-  //     }
-
-  //     console.log(cardData);
-  //   });
 }
 
 //remving data from the local storage
 function removeFromLocalStorage(taskData) {
   const existingTasks =
-    JSON.parse(localStorage.getItem(taskData.taskStatus)) || [];
+    JSON.parse(localStorage.getItem(taskData.taskStatus.trim())) || [];
   const updatedTasks = existingTasks.filter(
     (task) => task.taskID !== taskData.taskID
   );
-  localStorage.setItem(taskData.taskStatus, JSON.stringify(updatedTasks));
-  // taskFromLocalStorage();
+  localStorage.setItem(
+    taskData.taskStatus.trim(),
+    JSON.stringify(updatedTasks)
+  );
 }
 
 // selecting the category
@@ -288,32 +240,9 @@ for (let i = 0; i < selectCategory.length; i++) {
     if (previouslySelected) {
       previouslySelected.classList.remove("selected-task");
     }
-
     selectCategory[i].classList.add("selected-task");
 
     // Add "selected-task" class to the clicked element
     taskCategory = selectCategory[i].classList[1];
-
-    // console.log(taskCategory);
   });
-}
-
-// // show card data details
-// cardData.addEventListener('click' , () => {
-//     console.log("card data opened")
-// })
-
-// Function to update the task description in local storage
-function updateTaskDescriptionInLocalStorage(taskData, newDescription) {
-  const stageKey = taskData.taskStatus;
-  const tasks = JSON.parse(localStorage.getItem(stageKey)) || [];
-
-  // Find the task with the given taskID in the current stage
-  const taskIndex = tasks.findIndex((task) => task.taskID == taskData.taskID);
-
-  if (taskIndex !== -1) {
-    // Update the task's description
-    tasks[taskIndex].taskDescription = newDescription;
-    localStorage.setItem(stageKey, JSON.stringify(tasks));
-  }
 }

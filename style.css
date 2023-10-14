@@ -1,0 +1,276 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #eeeeee;
+}
+
+.todo-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-tracker {
+  margin-top: 2rem;
+  font-size: 2rem;
+}
+
+.add-btn-container {
+  width: 90vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.theme {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.add-btn-icn {
+  width: 8rem;
+  height: 2rem;
+  border: 1px solid;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 1rem 1rem 1rem 0;
+}
+
+.slider-container {
+  width: 3rem;
+  height: 1.5rem;
+  background-color: black;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.slider {
+  width: 30%;
+  height: 90%;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid white;
+}
+
+.add-btn-icn p {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.task-cont {
+  /* height: 40vh; */
+  width: 30rem;
+  /* border: 1px solid; */
+  position: absolute;
+  top: 30vh;
+  left: 35vw;
+  background-color: white;
+  box-shadow: 5px 5px 10px lightgray;
+  border-radius: 20px;
+  display: none;
+  align-items: center;
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem;
+}
+
+.task-form input {
+  height: 2rem;
+  font-size: 1.2rem;
+  padding-left: 10px;
+  outline: none;
+}
+.task-details h4 {
+  font-size: 1.1rem;
+  text-align: center;
+  text-decoration: underline;
+  text-transform: capitalize;
+}
+
+.task-form textarea {
+  height: 10rem;
+  resize: none;
+  font-size: 1.2rem;
+  padding-left: 10px;
+  padding-top: 5px;
+  outline: none;
+  border-radius: 10px;
+}
+
+.add-task-btn {
+  border: none;
+  background-color: greenyellow;
+  height: 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.task-stage {
+  height: 30vh;
+  width: 7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.stage-types {
+  border-radius: 10px;
+  width: 100%;
+  height: 2rem;
+  text-align: center;
+  padding-top: 5%;
+  cursor: pointer;
+  font-weight: bold;
+
+}
+
+.selected-task {
+  background-color: grey;
+}
+
+.task-categories {
+  width: 90vw;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.category {
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  border-radius: 20px;
+  /* box-shadow: 5px 5px 10px rgb(173, 190, 200); */
+  /* background-color:#a8a8a8c4; */
+
+}
+
+.category-name {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  color: black;
+  margin-top: 1rem;
+  background-color: #8ce0a1ce;
+  padding: .5rem 1rem;
+  border-radius: 20px;
+}
+
+/* card Data */
+
+.card-data {
+  width: 80%;
+  /* height: 10rem; */
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  box-shadow: 2px 3px 5px rgba(150, 171, 179, 0.817);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+  transition: all 0.5s ease-in;
+  background-color: #cbcee494;
+  color: black;
+  cursor:  pointer;
+  gap: 1rem;
+}
+
+
+
+.task-details {
+  width: 80%;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.task-details p span {
+  font-weight: bold;
+}
+.task-action {
+  cursor: pointer;
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+}
+
+/* actions */
+.edit-action{
+  width: 4rem;
+  border-radius: 10px;
+  background-color: #3FA959;
+  padding: .4rem;
+  outline: none;
+  border: none;
+}
+.save-action{
+  border-radius: 10px;
+  background-color: yellow;
+  padding: .4rem;
+}
+
+.remove-action{
+  border-radius: 10px;
+  background-color: #cd2626d8;
+  padding: .4rem;
+  
+}
+
+
+/* open card showing styling */
+
+.open-card{
+  display: none;
+  width: 20rem;
+  height: 20rem;
+  background-color: antiquewhite;
+  border-radius: 20px;
+  position: absolute;
+
+}
+
+.show-card-data{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-heading{
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+
+.task-description{
+  font-size:1.2rem
+}
+
+.card-transition{
+  
+}

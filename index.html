@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/Todo-Application/todo.png" type="image/x-icon"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&family=Cutive+Mono&family=Maven+Pro&family=Nunito:ital,wght@0,400;1,300&family=Poppins:wght@300&family=REM:wght@100&family=Roboto+Slab:wght@200&family=Ubuntu+Mono:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Todo Application</title>
+  </head>
+  <body>
+    <div class="todo-container">
+      <h4 class="task-tracker">Task Tracker</h4>
+      <div class="add-btn-container">
+        <div class="theme">
+          <h2>THEME</h2>
+          <div class="slider-container">
+            <div class="slider"></div>
+          </div>
+        </div>
+        <div class="add-btn-icn">
+          <i class="fa-solid fa-plus"></i>
+          <p>Add new task</p>
+        </div>
+      </div>
+
+      <div class="task-cont">
+        <form class="task-form">
+          <input type="text" placeholder="enter the task name" required />
+          <textarea
+            placeholder="enter the task description"
+            required
+          ></textarea>
+
+          <button class="add-task-btn">Add Task</button>
+        </form>
+
+        <div class="task-stage">
+          <div class="stage-types all selected-task">All</div>
+          <div class="stage-types working">working</div>
+          <div class="stage-types pending">pending</div>
+          <div class="stage-types completed">completed</div>
+        </div>
+      </div>
+      <div class="task-categories">
+        <div class="category all swin-lane" id="_all">
+          <p class="category-name">All</p>
+        </div>
+        <div class="category working swin-lane" id="_working">
+          <p class="category-name">working</p>
+        </div>
+        <div class="category pending swin-lane" id="_pending">
+          <p class="category-name">pending</p>
+        </div>
+        <div class="category completed swin-lane" id="_completed">
+          <p class="category-name">completed</p>
+        </div>
+      </div>
+      <div class="open-card">
+        <h2 class="task-heading"></h2>
+        <p class="task-description"></p>
+
+      </div>
+    </div>
+
+    <script src="./drag.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>

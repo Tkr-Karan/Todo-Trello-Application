@@ -48,7 +48,7 @@ droppables.forEach((zone) => {
 
     let currDraggingCardData = {
       taskDescription: curTask.querySelector(".task-card-desc").textContent,
-      taskID: 1697170875150,
+      // taskID: curTask.querySelector("."),
       taskName: curTask.querySelector("h4").textContent,
       taskStatus: curTask.querySelector(".task-status").textContent.trim(),
     };
@@ -60,7 +60,7 @@ droppables.forEach((zone) => {
     let existData = JSON.parse(localStorage.getItem(drggingCategory)) || [];
     existData = [...existData, currDraggingCardData];
 
-    let removeTaskId = draggingCardData.taskID;
+    let removeTask = currDraggingCardData.taskName;
     if (!localStorage.getItem(drggingCategory)) {
       localStorage.setItem(drggingCategory, JSON.stringify(existData));
     } else {
@@ -73,9 +73,11 @@ droppables.forEach((zone) => {
       localStorage.getItem(draggingCardData.taskStatus.trim())
     );
 
-    console.log(prevExistData);
+    console.log(removeTask);
 
-    prevExistData = prevExistData.filter((val) => val.taskID !== removeTaskId);
+    prevExistData = prevExistData.filter((val) => val.taskName !== removeTask);
+
+    console.log("prev", prevExistData)
 
     localStorage.setItem(
       draggingCardData.taskStatus.trim(),

@@ -122,7 +122,33 @@ export function createCard(taskData, stageKey) {
   let cardData = {
     name: taskData.taskName,
     description: taskData.taskDescription,
+    createdAt: taskData.taskCreatedAt,
   };
+
+  let showCard = document.querySelector(".open-card");
+  let taskHeading = document.querySelector(".task-heading");
+  let taskDescription = document.querySelector(".task-description");
+  let taskCreatedAt = document.querySelector(".created-at");
+  let taskUpdatedAt = document.querySelector(".updated-at");
+
+  let isCardOpen = true;
+  createTask.addEventListener("click", () => {
+    let cardTaskName = cardData.name;
+    let cardDescription = cardData.description;
+
+    if (isCardOpen) {
+      showCard.classList.add("show-open-card");
+      showCard.style.display = "flex";
+      isCardOpen = false;
+      taskHeading.textContent = cardTaskName;
+      taskDescription.textContent = cardDescription;
+      taskCreatedAt.textContent = cardData.createdAt;
+    } else {
+      showCard.classList.remove("show-open-card");
+      showCard.style.display = "none";
+      isCardOpen = true;
+    }
+  });
 }
 
 //remving data from the local storage
@@ -195,6 +221,7 @@ formData.addEventListener("submit", function (e) {
     taskName: e.target[0].value,
     taskDescription: e.target[1].value,
     taskStatus: taskCategory.trim(),
+    taskCreatedAt: new Date().toLocaleString(),
   };
 
   //   console.log(taskCategory);

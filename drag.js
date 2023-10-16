@@ -87,17 +87,17 @@ droppables.forEach((zone) => {
       JSON.stringify(prevExistData)
     );
 
-    if (newStatus == "pending")
-      cardDetails.parentElement.style.backgroundColor = "lightGreen";
-    if (newStatus == "all") {
-      cardDetails.parentElement.style.backgroundColor = "lightBlue";
-    }
-    if (newStatus == "working") {
-      cardDetails.parentElement.style.backgroundColor = "lightGrey";
-    }
-    if (newStatus == "completed") {
-      cardDetails.parentElement.style.backgroundColor = "#CC66FF";
-    }
+    // if (newStatus == "pending")
+    //   cardDetails.parentElement.style.backgroundColor = "lightGreen";
+    // if (newStatus == "all") {
+    //   cardDetails.parentElement.style.backgroundColor = "lightBlue";
+    // }
+    // if (newStatus == "working") {
+    //   cardDetails.parentElement.style.backgroundColor = "lightGrey";
+    // }
+    // if (newStatus == "completed") {
+    //   cardDetails.parentElement.style.backgroundColor = "#CC66FF";
+    // }
 
     // Clear the dragging class
     curTask.classList.remove("is-dragging");

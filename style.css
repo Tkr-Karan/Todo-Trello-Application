@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   background-color: #eeeeee;
 }
 
@@ -140,7 +140,6 @@ body {
   padding-top: 5%;
   cursor: pointer;
   font-weight: bold;
-
 }
 
 .selected-task {
@@ -165,19 +164,32 @@ body {
   border-radius: 20px;
   /* box-shadow: 5px 5px 10px rgb(173, 190, 200); */
   /* background-color:#a8a8a8c4; */
-
 }
 
 .category-name {
-  font-size: 1.5rem;
+  font-size: 1rem;
   text-transform: capitalize;
   color: black;
   margin-top: 1rem;
-  background-color: #8ce0a1ce;
-  padding: .5rem 1rem;
-  border-radius: 20px;
+
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
 }
 
+.category_all {
+  background-color: rgba(255, 103, 103, 0.445);
+}
+
+.category_working {
+  background-color: bisque;
+}
+
+.category_pending {
+  background-color: khaki;
+}
+.category_completed {
+  background-color: #8ce0a1ce;
+}
 /* card Data */
 
 .card-data {
@@ -195,11 +207,13 @@ body {
   transition: all 0.5s ease-in;
   background-color: #ffffff94;
   color: black;
-  cursor:  pointer;
+  cursor: pointer;
   gap: 1rem;
 }
 
-
+.card-data:hover {
+  background-color: beige;
+}
 
 .task-details {
   width: 80%;
@@ -221,52 +235,54 @@ body {
 }
 
 /* actions */
-.edit-action{
+.edit-action {
   width: 4rem;
   border-radius: 10px;
-  background-color: #3FA959;
-  padding: .4rem;
+  background-color: #3fa959;
+  padding: 0.4rem;
   outline: none;
   border: none;
 }
-.save-action{
+.save-action {
   border-radius: 10px;
   background-color: yellow;
-  padding: .4rem;
+  padding: 0.4rem;
 }
 
-.remove-action{
+.remove-action {
   border-radius: 10px;
   background-color: #cd2626d8;
-  padding: .4rem;
-  
+  padding: 0.4rem;
 }
-
 
 /* open card showing styling */
 
-.open-card{
+.open-card {
   display: none;
   width: 20rem;
   height: 20rem;
-  background-color: antiquewhite;
+  background-color: rgb(255, 255, 255);
   border-radius: 20px;
   position: absolute;
-
 }
 
-.show-card-data{
+.show-open-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
 }
 
-.task-heading{
+.task-heading {
   font-size: 1.5rem;
   text-transform: capitalize;
 }
 
-.task-description{
-  font-size:1.2rem
+.task-description {
+  font-size: 1.2rem;
+}
+
+.updated-at {
+  color: grey;
 }

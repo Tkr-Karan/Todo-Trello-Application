@@ -48,14 +48,18 @@ droppables.forEach((zone) => {
     const cardDetails = curTask.querySelector(".task-details");
     const taskStatus = cardDetails.querySelector(".task-status");
     taskStatus.innerHTML = `<span> ${newStatus} </span>`;
-
+    
     let currDraggingCardData = {
       taskDescription: curTask.querySelector(".task-card-desc").textContent,
       // taskID: curTask.querySelector("."),
       taskName: curTask.querySelector("h4").textContent,
       taskStatus: curTask.querySelector(".task-status").textContent.trim(),
+      taskCreatedAt: curTask,
+      taskUpdatedAt: new Date().toLocaleString(),
     };
-
+    
+    const updatedTaskTime = cardDetails.querySelector(".task-updated")
+    updatedTaskTime.textContent = currDraggingCardData.taskUpdatedAt
     // console.log("dropped", draggingCardData.taskID);
 
     const drggingCategory = currDraggingCardData.taskStatus.trim();
@@ -71,6 +75,10 @@ droppables.forEach((zone) => {
     }
 
     console.log(draggingCardData.taskID);
+
+    let showOpenCard = document.querySelector(".updated-at");
+
+    showOpenCard.textContent = currDraggingCardData.tasUpdatedAt;
 
     let prevExistData = JSON.parse(
       localStorage.getItem(draggingCardData.taskStatus.trim())
@@ -100,6 +108,9 @@ droppables.forEach((zone) => {
     // }
 
     // Clear the dragging class
+
+    // updateAndDisplayUpdateTime();
+
     curTask.classList.remove("is-dragging");
   });
 });
@@ -124,3 +135,11 @@ const insertAboveTask = (zone, mouseY) => {
 
   return closestTask;
 };
+
+function updateAndDisplayUpdateTime() {
+  const showCardUpdatedAt = document.querySelector(".updated-at");
+  const now = new Date();
+  const updatedAt = now.toLocaleString(); // Format the date and time
+
+  showCardUpdatedAt.textContent = updatedAt;
+}

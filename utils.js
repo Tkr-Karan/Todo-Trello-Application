@@ -10,6 +10,7 @@ export default function taskFromLocalStorage(isDeleted) {
 
       for (let j = 0; j < taskObj.length; j++) {
         let task = taskObj[j];
+
         createCard(task, stageKey, isDeleted);
       }
     }
@@ -26,6 +27,8 @@ export function createCard(taskData, stageKey) {
       <h4>${taskData.taskName}</h4>
       <p > details: <span class="task-card-desc">${taskData.taskDescription}</span> </p>
       <p >status: <span class="task-status"> ${taskData.taskStatus} </span>  </p>
+
+      <p class="task-updated"> ${taskData.taskUpdatedAt} </p>
     </div>
     <div class="task-action">
     <button class="edit-action" id="edit-btn">Edit <i class="fa-solid fa-pencil"></i></button>
@@ -123,26 +126,37 @@ export function createCard(taskData, stageKey) {
     name: taskData.taskName,
     description: taskData.taskDescription,
     createdAt: taskData.taskCreatedAt,
+    status: taskData.taskStatus,
+    updateAt: taskData.updateAt,
   };
 
+
+    
   let showCard = document.querySelector(".open-card");
   let taskHeading = document.querySelector(".task-heading");
   let taskDescription = document.querySelector(".task-description");
   let taskCreatedAt = document.querySelector(".created-at");
-  let taskUpdatedAt = document.querySelector(".updated-at");
+  let cardUpdatedAt = createTask.querySelector(".task-updated");
+
+  let taskUpdatedTime = document.querySelector(".updated-at");
 
   let isCardOpen = true;
   createTask.addEventListener("click", () => {
+    // console.log(taskUpdatedAt, "efef");
     let cardTaskName = cardData.name;
     let cardDescription = cardData.description;
 
+    console.log("update", cardData.updateAt)
     if (isCardOpen) {
+
+      // console.log(showlocal[i].tasUpdatedAt);
       showCard.classList.add("show-open-card");
       showCard.style.display = "flex";
       isCardOpen = false;
       taskHeading.textContent = cardTaskName;
       taskDescription.textContent = cardDescription;
       taskCreatedAt.textContent = cardData.createdAt;
+      // taskUpdatedTime.textContent = cardData;
     } else {
       showCard.classList.remove("show-open-card");
       showCard.style.display = "none";
@@ -222,8 +236,9 @@ formData.addEventListener("submit", function (e) {
     taskDescription: e.target[1].value,
     taskStatus: taskCategory.trim(),
     taskCreatedAt: new Date().toLocaleString(),
+    taskUpdatedAt: "not yet",
   };
-
+``
   //   console.log(taskCategory);
 
   //make input to the initial state

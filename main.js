@@ -16,28 +16,47 @@ let slider = document.querySelector(".slider-container");
 let body = document.body;
 let isWhite = true;
 
+let myTheme = localStorage.getItem("myTheme");
+
 //theme changer
+
+if (myTheme == "dark") {
+  darkTheme();
+} else {
+  lightTheme();
+}
+
+function darkTheme() {
+  body.style.transition = "all .5s ease-in";
+  body.style.backgroundColor = "#202020	";
+  body.style.color = "#EEEEEE";
+  slide.style.transition = "all .5s ease-in";
+  slide.style.transform = "translateX(200%)";
+  slide.style.backgroundColor = "#202020";
+  slider.style.transition = "all .5s ease-in";
+  slider.style.backgroundColor = "white";
+  isWhite = false;
+
+  localStorage.setItem("myTheme", "dark");
+}
+
+function lightTheme() {
+  body.style.transition = "all .5s ease-in";
+  body.style.backgroundColor = "#EEEEEE";
+  body.style.color = "black";
+  slide.style.transition = "all .5s ease-in";
+  slide.style.transform = "translateX(0%)";
+  slide.style.backgroundColor = "white";
+  slider.style.transition = "all .5s ease-in";
+  slider.style.backgroundColor = "black";
+  isWhite = true;
+  localStorage.setItem("myTheme", "light");
+}
 themeChange.addEventListener("click", () => {
   if (isWhite) {
-    body.style.transition = "all .5s ease-in";
-    body.style.backgroundColor = "#202020	";
-    body.style.color = "#EEEEEE";
-    slide.style.transition = "all .5s ease-in";
-    slide.style.transform = "translateX(200%)";
-    slide.style.backgroundColor = "#202020";
-    slider.style.transition = "all .5s ease-in";
-    slider.style.backgroundColor = "white";
-    isWhite = false;
+    darkTheme();
   } else {
-    body.style.transition = "all .5s ease-in";
-    body.style.backgroundColor = "#EEEEEE";
-    body.style.color = "black";
-    slide.style.transition = "all .5s ease-in";
-    slide.style.transform = "translateX(0%)";
-    slide.style.backgroundColor = "white";
-    slider.style.transition = "all .5s ease-in";
-    slider.style.backgroundColor = "black";
-    isWhite = true;
+    lightTheme();
   }
 });
 

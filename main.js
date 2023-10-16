@@ -81,6 +81,7 @@ function taskFromLocalStorage(isDeleted) {
 formData.addEventListener("submit", function (e) {
   e.preventDefault();
 
+  // creating form details
   let formDetails = {
     taskID: Date.now(),
     taskName: e.target[0].value,
@@ -90,6 +91,7 @@ formData.addEventListener("submit", function (e) {
 
   //   console.log(taskCategory);
 
+  //make input to the initial state
   e.target[0].value = "";
   e.target[1].value = "";
 

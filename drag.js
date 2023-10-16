@@ -3,6 +3,8 @@ const draggables = document.querySelectorAll(".task");
 const droppables = document.querySelectorAll(".swin-lane");
 const taskStatusData = document.querySelectorAll(".task-status");
 
+
+// draggables card
 draggables.forEach((task) => {
   task.addEventListener("dragstart", () => {
     task.classList.add("is-dragging");
@@ -12,6 +14,8 @@ draggables.forEach((task) => {
   });
 });
 
+
+// dropping
 droppables.forEach((zone) => {
   let draggingCardData = null;
   zone.addEventListener("dragover", (e) => {
@@ -37,6 +41,8 @@ droppables.forEach((zone) => {
     }
   });
 
+
+  // checking zone where to drop
   zone.addEventListener("drop", (e) => {
     const curTask = document.querySelector(".is-dragging");
     const newStatus = zone.getAttribute("id").replace("_", "");
@@ -101,6 +107,9 @@ droppables.forEach((zone) => {
   });
 });
 
+
+
+// checking before insert
 const insertAboveTask = (zone, mouseY) => {
   const els = zone.querySelectorAll(".task:not(.is-dragging)");
 

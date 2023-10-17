@@ -51,14 +51,14 @@
         </form>
 
         <div class="task-stage">
-          <div class="stage-types all selected-task">All</div>
+          <!-- <div class="stage-types all selected-task">All</div>
           <div class="stage-types working">working</div>
           <div class="stage-types pending">pending</div>
-          <div class="stage-types completed">completed</div>
+          <div class="stage-types completed">completed</div> -->
         </div>
       </div>
       <div class="task-categories">
-        <div class="category all swin-lane" id="_all">
+        <!-- <div class="category all swin-lane" id="_all">
           <p class="category-name category_all">all</p>
         </div>
         <div class="category working swin-lane" id="_working">
@@ -69,7 +69,7 @@
         </div>
         <div class="category completed swin-lane" id="_completed">
           <p class="category-name category_completed">completed</p>
-        </div>
+        </div> -->
       </div>
       <div class="open-card">
         <div>
@@ -81,11 +81,34 @@
 
         <h3>Task Description: <span class="task-description"></span></h3>
         <h3>createdAt: <span class="created-at"></span></h3>
-        <h3>updatedAt: <span class="updated-at"> </span></h3>
+        <!-- <h3>updatedAt: <span class="updated-at"> </span></h3> -->
       </div>
     </div>
 
-    <script src="./drag.js"></script>
-    <script type="module" src="./main.js"></script>
+    <!-- template code -->
+    <template id="stage-template">
+      <div class="stage-types all selected-task">All</div>
+      <div class="stage-types working">working</div>
+      <div class="stage-types pending">pending</div>
+      <div class="stage-types completed">completed</div>
+    </template>
+
+    <template id="category-template">
+      <div class="category all swin-lane" id="_all">
+        <p class="category-name category_all">all</p>
+      </div>
+      <div class="category working swin-lane" id="_working">
+        <p class="category-name category_working">working</p>
+      </div>
+      <div class="category pending swin-lane" id="_pending">
+        <p class="category-name category_pending">pending</p>
+      </div>
+      <div class="category completed swin-lane" id="_completed">
+        <p class="category-name category_completed">completed</p>
+      </div>
+    </template>
+    <script src="./template.js"></script>
+    <script async src="./drag.js"></script>
+    <script async type="module" src="./main.js"></script>
   </body>
 </html>

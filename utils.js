@@ -130,8 +130,6 @@ export function createCard(taskData, stageKey) {
     updateAt: taskData.updateAt,
   };
 
-
-    
   let showCard = document.querySelector(".open-card");
   let taskHeading = document.querySelector(".task-heading");
   let taskDescription = document.querySelector(".task-description");
@@ -141,14 +139,14 @@ export function createCard(taskData, stageKey) {
   let taskUpdatedTime = document.querySelector(".updated-at");
 
   let isCardOpen = true;
-  createTask.addEventListener("click", () => {
+  createTask.addEventListener("click", (e) => {
+    e.stopPropagation()
     // console.log(taskUpdatedAt, "efef");
     let cardTaskName = cardData.name;
     let cardDescription = cardData.description;
 
-    console.log("update", cardData.updateAt)
+    console.log("update", cardData.updateAt);
     if (isCardOpen) {
-
       // console.log(showlocal[i].tasUpdatedAt);
       showCard.classList.add("show-open-card");
       showCard.style.display = "flex";
@@ -236,9 +234,9 @@ formData.addEventListener("submit", function (e) {
     taskDescription: e.target[1].value,
     taskStatus: taskCategory.trim(),
     taskCreatedAt: new Date().toLocaleString(),
-    taskUpdatedAt: "not yet",
+    taskUpdatedAt: "not updated yet",
   };
-``
+  ``;
   //   console.log(taskCategory);
 
   //make input to the initial state

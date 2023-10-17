@@ -48,7 +48,7 @@ droppables.forEach((zone) => {
     const cardDetails = curTask.querySelector(".task-details");
     const taskStatus = cardDetails.querySelector(".task-status");
     taskStatus.innerHTML = `<span> ${newStatus} </span>`;
-    
+
     let currDraggingCardData = {
       taskDescription: curTask.querySelector(".task-card-desc").textContent,
       // taskID: curTask.querySelector("."),
@@ -57,9 +57,9 @@ droppables.forEach((zone) => {
       taskCreatedAt: curTask,
       taskUpdatedAt: new Date().toLocaleString(),
     };
-    
-    const updatedTaskTime = cardDetails.querySelector(".task-updated")
-    updatedTaskTime.textContent = currDraggingCardData.taskUpdatedAt
+
+    const updatedTaskTime = cardDetails.querySelector(".task-updated");
+    updatedTaskTime.textContent = currDraggingCardData.taskUpdatedAt;
     // console.log("dropped", draggingCardData.taskID);
 
     const drggingCategory = currDraggingCardData.taskStatus.trim();
@@ -76,9 +76,9 @@ droppables.forEach((zone) => {
 
     console.log(draggingCardData.taskID);
 
-    let showOpenCard = document.querySelector(".updated-at");
+    // let showOpenCard = document.querySelector(".updated-at");
 
-    showOpenCard.textContent = currDraggingCardData.tasUpdatedAt;
+    // showOpenCard.textContent = currDraggingCardData.tasUpdatedAt;
 
     let prevExistData = JSON.parse(
       localStorage.getItem(draggingCardData.taskStatus.trim())

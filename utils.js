@@ -60,6 +60,7 @@ export function createCard(taskData, stageKey) {
       //   const taskId = taskData.taskID;
       // deleteTask(taskId);
       removeFromLocalStorage(taskData);
+      showCard.style.display = "none";
     }
   });
 
@@ -140,12 +141,12 @@ export function createCard(taskData, stageKey) {
 
   let isCardOpen = true;
   createTask.addEventListener("click", (e) => {
-    e.stopPropagation()
+    e.stopPropagation();
     // console.log(taskUpdatedAt, "efef");
     let cardTaskName = cardData.name;
     let cardDescription = cardData.description;
 
-    console.log("update", cardData.updateAt);
+    // console.log("update", cardData.updateAt);
     if (isCardOpen) {
       // console.log(showlocal[i].tasUpdatedAt);
       showCard.classList.add("show-open-card");

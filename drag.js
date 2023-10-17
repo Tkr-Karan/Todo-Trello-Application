@@ -74,7 +74,7 @@ droppables.forEach((zone) => {
       localStorage.setItem(drggingCategory, JSON.stringify(existData));
     }
 
-    console.log(draggingCardData.taskID);
+    // console.log(draggingCardData.taskID);
 
     // let showOpenCard = document.querySelector(".updated-at");
 
@@ -84,11 +84,11 @@ droppables.forEach((zone) => {
       localStorage.getItem(draggingCardData.taskStatus.trim())
     );
 
-    console.log(removeTask);
+    // console.log(removeTask);
 
     prevExistData = prevExistData.filter((val) => val.taskName !== removeTask);
 
-    console.log("prev", prevExistData);
+    // console.log("prev", prevExistData);
 
     localStorage.setItem(
       draggingCardData.taskStatus.trim(),

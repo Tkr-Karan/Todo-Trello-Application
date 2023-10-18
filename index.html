@@ -40,37 +40,16 @@
       </div>
 
       <div class="task-cont">
-        <form class="task-form">
-          <input type="text" placeholder="enter the task name" required />
-          <textarea
-            placeholder="enter the task description"
-            required
-          ></textarea>
+        <!-- task form  -->
+        <form class="task-form"></form>
 
-          <button class="add-task-btn">Add Task</button>
-        </form>
+        <!-- task stages -->
+        <div class="task-stage"></div>
+      </div>
 
-        <div class="task-stage">
-          <!-- <div class="stage-types all selected-task">All</div>
-          <div class="stage-types working">working</div>
-          <div class="stage-types pending">pending</div>
-          <div class="stage-types completed">completed</div> -->
-        </div>
-      </div>
-      <div class="task-categories">
-        <!-- <div class="category all swin-lane" id="_all">
-          <p class="category-name category_all">all</p>
-        </div>
-        <div class="category working swin-lane" id="_working">
-          <p class="category-name category_working">working</p>
-        </div>
-        <div class="category pending swin-lane" id="_pending">
-          <p class="category-name category_pending">pending</p>
-        </div>
-        <div class="category completed swin-lane" id="_completed">
-          <p class="category-name category_completed">completed</p>
-        </div> -->
-      </div>
+      <!-- assigning the task categories -->
+      <div class="task-categories"></div>
+
       <div class="open-card">
         <div>
           <h3>
@@ -107,6 +86,14 @@
         <p class="category-name category_completed">completed</p>
       </div>
     </template>
+
+    <template id="form-template">
+      <input type="text" placeholder="enter the task name" required />
+      <textarea placeholder="enter the task description" required></textarea>
+
+      <button class="add-task-btn">Add Task</button>
+    </template>
+
     <script src="./template.js"></script>
     <script async src="./drag.js"></script>
     <script async type="module" src="./main.js"></script>

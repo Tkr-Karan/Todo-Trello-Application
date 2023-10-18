@@ -54,9 +54,11 @@ droppables.forEach((zone) => {
       // taskID: curTask.querySelector("."),
       taskName: curTask.querySelector("h4").textContent,
       taskStatus: curTask.querySelector(".task-status").textContent.trim(),
-      taskCreatedAt: curTask,
+      taskCreatedAt: curTask.querySelector(".task-created").textContent.trim(),
       taskUpdatedAt: new Date().toLocaleString(),
     };
+
+    console.log(currDraggingCardData.taskCreatedAt);
 
     const updatedTaskTime = cardDetails.querySelector(".task-updated");
     updatedTaskTime.textContent = currDraggingCardData.taskUpdatedAt;
@@ -107,10 +109,6 @@ droppables.forEach((zone) => {
     //   cardDetails.parentElement.style.backgroundColor = "#CC66FF";
     // }
 
-    // Clear the dragging class
-
-    // updateAndDisplayUpdateTime();
-
     curTask.classList.remove("is-dragging");
   });
 });
@@ -135,11 +133,3 @@ const insertAboveTask = (zone, mouseY) => {
 
   return closestTask;
 };
-
-function updateAndDisplayUpdateTime() {
-  const showCardUpdatedAt = document.querySelector(".updated-at");
-  const now = new Date();
-  const updatedAt = now.toLocaleString(); // Format the date and time
-
-  showCardUpdatedAt.textContent = updatedAt;
-}

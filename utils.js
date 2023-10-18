@@ -81,6 +81,9 @@ export function createCard(taskData, stageKey) {
     let saveIcon = edit.querySelector(".fa-pencil");
     const cardDescription = taskDetails.querySelector(".task-card-desc");
 
+    cardDescription.addEventListener("click", (e) => {
+      isCardOpen = false;
+    });
     //updating local storage when we are editing
     function updateLocalStorage() {
       const existingTasks =
@@ -104,6 +107,19 @@ export function createCard(taskData, stageKey) {
       cardDescription.focus();
       cardDescription.style.cursor = "text";
       cardDescription.style.outline = "none";
+
+      cardDescription.addEventListener("keydown", (e) => {
+        console.log("karS")
+        if (Number(e.target.textContent.length) > 14) {
+          console.log("exceed");
+          cardDescription.blur()
+        }
+        // if(Number(e.target.textContent.length) == 14 ){
+        //   cardDescription.contentEditable = true
+        // }
+        // if (e.target.value.length >= 10) {
+        // }
+      });
 
       let editBtn = createTask.querySelector("#edit-btn");
       editBtn.disabled = true;

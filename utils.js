@@ -27,7 +27,7 @@ export function createCard(taskData, stageKey) {
       <h4>${taskData.taskName}</h4>
       <p > details: <span class="task-card-desc">${taskData.taskDescription}</span> </p>
       <p >status: <span class="task-status"> ${taskData.taskStatus} </span>  </p>
-
+      <p style="display: hidden" class="task-created"> ${taskData.taskCreatedAt} </p>
       <p class="task-updated"> ${taskData.taskUpdatedAt} </p>
     </div>
     <div class="task-action">
@@ -54,12 +54,19 @@ export function createCard(taskData, stageKey) {
     e.stopPropagation();
     isDeleted = true;
 
+    let localTaskStatus = createTask.querySelector(".task-status");
+
+    // let localTaskData = localStorage.getItem(localTaskStatus);
+    // console.log(localTaskData);
+
     if (window.confirm("you wanna delete this 🧐")) {
       const parentElement = createTask.parentElement;
       parentElement.removeChild(createTask);
       //   const taskId = taskData.taskID;
       // deleteTask(taskId);
-      removeFromLocalStorage(taskData);
+      // console.log(localTaskStatus);
+
+      removeFromLocalStorage(taskData, localTaskStatus);
       showCard.style.display = "none";
     }
   });
@@ -74,6 +81,9 @@ export function createCard(taskData, stageKey) {
     let saveIcon = edit.querySelector(".fa-pencil");
     const cardDescription = taskDetails.querySelector(".task-card-desc");
 
+    cardDescription.addEventListener("click", (e) => {
+      isCardOpen = false;
+    });
     //updating local storage when we are editing
     function updateLocalStorage() {
       const existingTasks =
@@ -97,6 +107,19 @@ export function createCard(taskData, stageKey) {
       cardDescription.focus();
       cardDescription.style.cursor = "text";
       cardDescription.style.outline = "none";
+
+      cardDescription.addEventListener("keydown", (e) => {
+        console.log("karS")
+        if (Number(e.target.textContent.length) > 14) {
+          console.log("exceed");
+          cardDescription.blur()
+        }
+        // if(Number(e.target.textContent.length) == 14 ){
+        //   cardDescription.contentEditable = true
+        // }
+        // if (e.target.value.length >= 10) {
+        // }
+      });
 
       let editBtn = createTask.querySelector("#edit-btn");
       editBtn.disabled = true;
@@ -165,16 +188,16 @@ export function createCard(taskData, stageKey) {
 }
 
 //remving data from the local storage
-function removeFromLocalStorage(taskData) {
+function removeFromLocalStorage(taskData, status) {
+  console.log(status);
   const existingTasks =
-    JSON.parse(localStorage.getItem(taskData.taskStatus.trim())) || [];
+    JSON.parse(localStorage.getItem(status.textContent.trim())) || [];
+
+  console.log(existingTasks);
   const updatedTasks = existingTasks.filter(
-    (task) => task.taskID !== taskData.taskID
+    (task) => task.taskName !== taskData.taskName
   );
-  localStorage.setItem(
-    taskData.taskStatus.trim(),
-    JSON.stringify(updatedTasks)
-  );
+  localStorage.setItem(status.textContent.trim(), JSON.stringify(updatedTasks));
 }
 
 let body = document.body;
@@ -230,7 +253,7 @@ formData.addEventListener("submit", function (e) {
 
   // creating form details
   let formDetails = {
-    taskID: Date.now(),
+    // taskID: Date.now(),
     taskName: e.target[0].value,
     taskDescription: e.target[1].value,
     taskStatus: taskCategory.trim(),

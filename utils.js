@@ -19,6 +19,7 @@ export default function taskFromLocalStorage(isDeleted) {
 }
 
 //create the task card
+let showCard = document.querySelector(".open-card");
 export function createCard(taskData, stageKey) {
   let createTask = document.createElement("div");
   createTask.setAttribute("class", "card-data task");
@@ -109,10 +110,8 @@ export function createCard(taskData, stageKey) {
       cardDescription.style.outline = "none";
 
       cardDescription.addEventListener("keydown", (e) => {
-        console.log("karS")
         if (Number(e.target.textContent.length) > 14) {
-          console.log("exceed");
-          cardDescription.blur()
+          cardDescription.blur();
         }
         // if(Number(e.target.textContent.length) == 14 ){
         //   cardDescription.contentEditable = true
@@ -154,7 +153,6 @@ export function createCard(taskData, stageKey) {
     updateAt: taskData.updateAt,
   };
 
-  let showCard = document.querySelector(".open-card");
   let taskHeading = document.querySelector(".task-heading");
   let taskDescription = document.querySelector(".task-description");
   let taskCreatedAt = document.querySelector(".created-at");
@@ -168,6 +166,12 @@ export function createCard(taskData, stageKey) {
     // console.log(taskUpdatedAt, "efef");
     let cardTaskName = cardData.name;
     let cardDescription = cardData.description;
+
+    let closeCard = document.querySelector(".card-close");
+    closeCard.addEventListener("click", () => {
+      showCard.style.display = "none";
+      isCardOpen = true;
+    });
 
     // console.log("update", cardData.updateAt);
     if (isCardOpen) {
@@ -189,11 +193,9 @@ export function createCard(taskData, stageKey) {
 
 //remving data from the local storage
 function removeFromLocalStorage(taskData, status) {
-  console.log(status);
   const existingTasks =
     JSON.parse(localStorage.getItem(status.textContent.trim())) || [];
 
-  console.log(existingTasks);
   const updatedTasks = existingTasks.filter(
     (task) => task.taskName !== taskData.taskName
   );
@@ -214,11 +216,15 @@ export function darkTheme() {
   slide.style.backgroundColor = "#202020";
   slider.style.transition = "all .5s ease-in";
   slider.style.backgroundColor = "white";
+  taskContainer.style.color = "black";
+  showCard.style.color = "black";
+
   isWhite = false;
 
   localStorage.setItem("myTheme", "dark");
 }
 
+//light theme
 export function lightTheme() {
   body.style.transition = "all .5s ease-in";
   body.style.backgroundColor = "#EEEEEE";
@@ -234,8 +240,14 @@ export function lightTheme() {
 
 export let taskContainer = document.querySelector(".task-cont");
 let isAddTaskOpen = true;
-// add task funtion that help us for showing the task container
+// add task funtion that help us for showing the task container or toggling
 export function addTask() {
+  let closeForm = document.querySelector(".close");
+
+  closeForm.addEventListener("click", () => {
+    taskContainer.style.display = "none";
+    isAddTaskOpen = true;
+  });
   if (isAddTaskOpen) {
     taskContainer.style.display = "flex";
     isAddTaskOpen = false;
@@ -267,6 +279,8 @@ formData.addEventListener("submit", function (e) {
   e.target[0].value = "";
   e.target[1].value = "";
 
+
+  // adding the donr data in the local storage
   let existingTasks;
   existingTasks = JSON.parse(localStorage.getItem(taskCategory.trim())) || [];
   existingTasks = [...existingTasks, formDetails];
@@ -285,7 +299,7 @@ formData.addEventListener("submit", function (e) {
   createCard(formDetails, formDetails.taskStatus);
 });
 
-// selecting the category
+// selecting the category and changing it 
 let selectCategory = document.querySelectorAll(".task-stage div");
 for (let i = 0; i < selectCategory.length; i++) {
   selectCategory[i].addEventListener("click", (e) => {

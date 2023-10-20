@@ -6,7 +6,8 @@ addNewTask.addEventListener("click", addTask);
 let themeChange = document.querySelector(".theme");
 
 let myTheme = localStorage.getItem("myTheme");
-//theme changer
+
+//theme changer either its dark or light
 if (myTheme == "dark") {
   darkTheme();
 } else {

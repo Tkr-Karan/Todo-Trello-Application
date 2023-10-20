@@ -29,12 +29,6 @@ body {
   align-items: center;
 }
 
-.theme {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
 
 .add-btn-icn {
   width: 8rem;
@@ -48,6 +42,14 @@ body {
   margin: 1rem 1rem 1rem 0;
 }
 
+/* theme change styling  */
+
+.theme {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 .slider-container {
   width: 3rem;
   height: 1.5rem;
@@ -83,6 +85,14 @@ body {
   border-radius: 20px;
   display: none;
   align-items: center;
+  z-index: 55555;
+}
+
+.close{
+  position: absolute;
+  top: .5rem;
+  right: 1rem;
+  cursor: pointer;
 }
 
 .task-form {
@@ -162,8 +172,6 @@ body {
   justify-content: start;
   align-items: center;
   border-radius: 20px;
-  /* box-shadow: 5px 5px 10px rgb(173, 190, 200); */
-  /* background-color:#a8a8a8c4; */
 }
 
 .category-name {
@@ -190,6 +198,8 @@ body {
 .category_completed {
   background-color: #8ce0a1ce;
 }
+
+
 /* card Data */
 
 .card-data {
@@ -234,7 +244,7 @@ body {
   font-weight: bold;
 }
 
-/* actions */
+/* card actions styling */
 .edit-action {
   width: 4rem;
   border-radius: 10px;
@@ -256,7 +266,6 @@ body {
 }
 
 /* open card showing styling */
-
 .open-card {
   display: none;
   width: 20rem;
@@ -264,6 +273,14 @@ body {
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
   position: absolute;
+}
+
+
+.card-close{
+  position: absolute;
+  top: .5rem;
+  right: 1rem;
+  cursor: pointer;
 }
 
 .show-open-card {
@@ -281,8 +298,4 @@ body {
 
 .task-description {
   font-size: 1.2rem;
-}
-
-.updated-at {
-  color: grey;
 }

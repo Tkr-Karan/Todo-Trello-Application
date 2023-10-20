@@ -20,10 +20,10 @@ droppables.forEach((zone) => {
     e.preventDefault();
     const draggingData = document.querySelector(".is-dragging");
 
+    // getting the dragging card data
     draggingCardData = {
       taskDescription:
         draggingData.querySelector(".task-card-desc").textContent,
-      taskID: 1697170875150,
       taskName: draggingData.querySelector("h4").textContent,
       taskStatus: draggingData.querySelector(".task-status").textContent.trim(),
     };
@@ -32,6 +32,7 @@ droppables.forEach((zone) => {
     const bottomTask = insertAboveTask(zone, e.clientY);
     const curTask = document.querySelector(".is-dragging");
 
+    //i f card is not present in the zone or category then directly append the new card in the zone otherwise insert before the previous card
     if (!bottomTask) {
       zone.appendChild(curTask);
     } else {
@@ -49,20 +50,18 @@ droppables.forEach((zone) => {
     const taskStatus = cardDetails.querySelector(".task-status");
     taskStatus.innerHTML = `<span> ${newStatus} </span>`;
 
+    // storing dropped card data
     let currDraggingCardData = {
       taskDescription: curTask.querySelector(".task-card-desc").textContent,
-      // taskID: curTask.querySelector("."),
       taskName: curTask.querySelector("h4").textContent,
       taskStatus: curTask.querySelector(".task-status").textContent.trim(),
       taskCreatedAt: curTask.querySelector(".task-created").textContent.trim(),
       taskUpdatedAt: new Date().toLocaleString(),
     };
 
-    console.log(currDraggingCardData.taskCreatedAt);
-
+    // updating in  the local stoarage with the updated time
     const updatedTaskTime = cardDetails.querySelector(".task-updated");
     updatedTaskTime.textContent = currDraggingCardData.taskUpdatedAt;
-    // console.log("dropped", draggingCardData.taskID);
 
     const drggingCategory = currDraggingCardData.taskStatus.trim();
 
@@ -75,12 +74,6 @@ droppables.forEach((zone) => {
     } else {
       localStorage.setItem(drggingCategory, JSON.stringify(existData));
     }
-
-    // console.log(draggingCardData.taskID);
-
-    // let showOpenCard = document.querySelector(".updated-at");
-
-    // showOpenCard.textContent = currDraggingCardData.tasUpdatedAt;
 
     let prevExistData = JSON.parse(
       localStorage.getItem(draggingCardData.taskStatus.trim())
@@ -96,18 +89,6 @@ droppables.forEach((zone) => {
       draggingCardData.taskStatus.trim(),
       JSON.stringify(prevExistData)
     );
-
-    // if (newStatus == "pending")
-    //   cardDetails.parentElement.style.backgroundColor = "lightGreen";
-    // if (newStatus == "all") {
-    //   cardDetails.parentElement.style.backgroundColor = "lightBlue";
-    // }
-    // if (newStatus == "working") {
-    //   cardDetails.parentElement.style.backgroundColor = "lightGrey";
-    // }
-    // if (newStatus == "completed") {
-    //   cardDetails.parentElement.style.backgroundColor = "#CC66FF";
-    // }
 
     curTask.classList.remove("is-dragging");
   });
